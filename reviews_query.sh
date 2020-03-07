@@ -36,6 +36,7 @@ apikey=${apikey//[$'\t\r\n']}
 phabkey=$(jq -r '.reviews | .phab_key' review_parameters.json)
 phabkey=${phabkey//[$'\t\r\n']}
 reviews_file='pending_reviews.json'
+bug_fields=$(jq -r '.reviews.bug_fields[]' review_parameters.json |  paste -sd, -)
 
 # read reviewers
 reviewers=$(jq -r '.reviews.reviewers[]' review_parameters.json)
